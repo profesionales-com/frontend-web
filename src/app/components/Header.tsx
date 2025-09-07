@@ -76,7 +76,7 @@ export default function Header() {
     }, [mobileMenuOpen]);
 
     return (
-        <header className="flex content-between w-full justify-between px-4 md:px-20 py-5 shadow-xl xl:shadow-none relative">
+        <header className="flex content-between w-full justify-between px-4 md:px-20 py-5 shadow-xl relative">
             {/* Logo y nombre */}
             <Branding />
 
@@ -93,15 +93,9 @@ export default function Header() {
                         <Link href="/account">Cuenta</Link>
                     </li> */}
                     <li className='flex items-center'>
-                        <Link href="/appointment">
-                            <button className="rounded-full md:rounded-l-full md:rounded-r-none cursor-pointer transition-colors flex items-center justify-center bg-foreground text-background gap-2 font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5">
-                                <p> Reservar</p>
-                                <p className='hidden md:flex'>hora</p>
-                            </button>
-                        </Link>
-                        <Link href="/cancel-appointment" className='hidden md:flex'>
-                            <button className="rounded-r-full border cursor-pointer h-10 sm:h-12 px-2 w-15 text-xs text-start">
-                                Anular hora
+                        <Link href="">
+                            <button className="rounded-full cursor-pointer transition-colors flex items-center justify-center bg-foreground text-background gap-2 font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5">
+                                <p>Soy profesional</p>
                             </button>
                         </Link>
                     </li>
