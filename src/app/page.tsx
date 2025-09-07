@@ -39,7 +39,7 @@ export default function Home() {
 
   return (
     <div className="md:mx-20 flex flex-col items-center justify-center">
-      <div className="my-10">
+      <div className="m-10">
         <div className="text-start">
           <p className="text-4xl">
             Encuentra el profesional que necesitas y pide cita
@@ -48,7 +48,7 @@ export default function Home() {
             60 000 profesionales están aquí para ayudarte.
           </p>
         </div>
-        <div className="flex flex-col gap-7 my-10">
+        <div className="flex flex-col gap-7 mt-10">
           <div className='flex flex-col gap-6'>
             <div className="flex gap-4">
               {['presencial', 'remote', 'onSite'].map(type => (
@@ -59,7 +59,7 @@ export default function Home() {
                     : 'bg-[var(--color-background)] text-[var(--color-foreground)]'}`}
                   onClick={() => setSelectedAttentionType(type as 'presencial' | 'remote' | 'onSite')}
                 >
-                  {type === 'presencial' ? 'Atención presencial' : type === 'remote' ? 'Atención remota' : 'Atención a domicilio'}
+                  {type === 'presencial' ? 'Presencial' : type === 'remote' ? 'Remota' : 'A domicilio'}
                 </button>
               ))}
             </div>
@@ -106,85 +106,54 @@ export default function Home() {
         </div>
       </div>
       <div className="my-10 text-center">
-        <h1 className="md:text-4xl text-3xl font-bold mb-6">Conoce nuestros planes</h1>
-        <p className="text-lg mb-8 mx-2">Elige el plan que mejor se adapte a tus necesidades de salud y paga menos por tus atenciones</p>
+        <h1 className="md:text-4xl text-3xl font-bold mb-6">Conoce las areas mas populares</h1>
+        <p className="text-lg mb-8 mx-2">En cada una de ellas puedes encontrar el profesional que necesitas, con disponibilidad inmediata</p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center md:mx-0 mx-4">
           <ImageTopCard
             className="w-full"
-            imageSrc="/images/patient-1.webp"
-            title="Plan Básico"
-            description="Ideal para quienes buscan atención médica general."
-            buttonText="Ver Plan"
-            onButtonClick={() => alert('Plan Básico seleccionado')}
+            imageSrc="/images/professional-1.webp"
+            title="Construcción"
+            description="Profesionales para tus proyectos de construcción. Desde arquitectos hasta ingenieros civiles."
+            buttonText="Saber más"
+            onButtonClick={() => alert('Profesionales para tus proyectos de construcción. Desde arquitectos hasta ingenieros civiles.')}
           />
           <ImageTopCard
             className="w-full"
-            imageSrc="/images/patient-2.webp"
-            title="Plan Avanzado"
-            description="Para quienes necesitan atención especializada."
-            buttonText="Ver Plan"
-            onButtonClick={() => alert('Plan Avanzado seleccionado')}
+            imageSrc="/images/professional-2.webp"
+            title="Salud"
+            description="Encuentra médicos, dentistas y psicólogos para cuidar de ti y tu familia."
+            buttonText="Saber más"
+            onButtonClick={() => alert('Encuentra médicos, dentistas y psicólogos para cuidar de ti y tu familia.')}
           />
           <ImageTopCard
             className="w-full"
-            imageSrc="/images/patient-3.webp"
-            title="Plan Premium"
-            description="Atención integral con beneficios exclusivos."
-            buttonText="Ver Plan"
-            onButtonClick={() => alert('Plan Premium seleccionado')}
+            imageSrc="/images/professional-3.webp"
+            title="Legal"
+            description="Abogados especializados en diversas áreas del derecho para asesorarte y representarte."
+            buttonText="Saber más"
+            onButtonClick={() => alert('Abogados especializados en diversas áreas del derecho para asesorarte y representarte.')}
           />
         </div>
 
       </div>
       <div className="flex my-10 text-center justify-center">
         <div className="md:ml-20 ml-2 flex flex-col justify-center sm:pr-10 pr-2 items-center">
-          <h1 className="md:text-4xl text-3xl font-bold mb-6">¿Eres médico y quieres trabajar con nosotros?</h1>
-          <p className="text-lg mb-8">Nuestro propósito es ayudar a las personas a tener vidas más largas,
-            sanas, felices y crear un mundo mejor. Además, queremos ser la compañía de
-            salud más centrada en el cliente del mundo. ¡Acompañanos en este desafío!</p>
+          <h1 className="md:text-4xl text-3xl font-bold mb-6">¿Eres profesional? Comienza a ofrecer tus servicios</h1>
+          <p className="text-lg mb-8">Con nuestro servicio de atención virtual, 
+            puedes ofrecer tus servicios de manera remota y conectarte con pacientes de todo el mundo.</p>
           <button className="bg-[var(--color-foreground)] text-[var(--color-background)] px-6 py-3 rounded-full w-fit cursor-pointer">
-            Quiero trabajar con ustedes
+            <p>Ofrecer servicios</p>
           </button>
         </div>
 
         <div className="md:mr-20 mr-2 sm:flex hidden w-full relative h-[400px]">
           <Image
-            src={"/images/patient-1.webp"}
+            src={"/images/professional-4.webp"}
             alt={"Imagen de médico"}
             fill
             className="object-cover rounded-2xl"
           />
         </div>
-      </div>
-      <div className="my-10 text-center">
-        <h1 className="md:text-4xl text-3xl font-bold mb-6">Cuida tu salud</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center md:mx-0 mx-4">
-          <ImageTopCard
-            className="w-full"
-            imageSrc="/images/patient-1.webp"
-            title="Plan Básico"
-            description="Ideal para quienes buscan atención médica general."
-            buttonText="Ver Plan"
-            onButtonClick={() => alert('Plan Básico seleccionado')}
-          />
-          <ImageTopCard
-            className="w-full"
-            imageSrc="/images/patient-2.webp"
-            title="Plan Avanzado"
-            description="Para quienes necesitan atención especializada."
-            buttonText="Ver Plan"
-            onButtonClick={() => alert('Plan Avanzado seleccionado')}
-          />
-          <ImageTopCard
-            className="w-full"
-            imageSrc="/images/patient-3.webp"
-            title="Plan Premium"
-            description="Atención integral con beneficios exclusivos."
-            buttonText="Ver Plan"
-            onButtonClick={() => alert('Plan Premium seleccionado')}
-          />
-        </div>
-
       </div>
     </div>
   );
@@ -256,7 +225,7 @@ function DoubleSelect({
           htmlFor={regionId}
           className={
             `absolute left-4 text-[var(--color-foreground)] transition-all ` +
-            `${!valueRegion && openMenu !== 'region' ? 'top-4 text-base' : '-top-2 text-sm'} ` +
+            `${!valueRegion && openMenu !== 'region' ? 'top-4 text-base text-[var(--color-foreground)]/50' : '-top-2 text-sm text-[var(--color-foreground)]'} ` +
             `bg-[var(--color-background)] px-1 pointer-events-none`
           }
         >
@@ -307,7 +276,7 @@ function DoubleSelect({
           htmlFor={comunaId}
           className={
             `absolute left-4 text-[var(--color-foreground)] transition-all ` +
-            `${!valueCommune && openMenu !== 'comuna' ? 'top-4 text-base' : '-top-2 text-sm'} ` +
+            `${!valueCommune && openMenu !== 'comuna' ? 'top-4 text-base text-[var(--color-foreground)]/50' : '-top-3 text-sm text-[var(--color-foreground)]'} ` +
             `${comunaDisabled ? 'bg-transparent cursor-not-allowed pointer-events-none' : 'bg-[var(--color-background)]'} ` +
             `px-1 pointer-events-none`
           }
