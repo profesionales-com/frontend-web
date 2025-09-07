@@ -5,12 +5,13 @@ import Image from 'next/image';
 import Select from "./components/Select";
 import { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
+import { atentionTypes, services } from "./data";
 
 
 export default function Home() {
 
-  const [selectedAttentionType, setSelectedAttentionType] = useState<'presencial' | 'remote' | 'onSite'>('presencial');
-  const [selectedInsurance, setSelectedInsurance] = useState<string>('');
+  const [selectedAttentionType, setSelectedAttentionType] = useState<string>('presencial');
+  const [selectedService, setSelectedService] = useState<string>('');
 
   // Estados de región/comuna
   const [regionOptions, setRegionOptions] = useState<{ label: string; value: string }[]>([]);
@@ -51,15 +52,15 @@ export default function Home() {
         <div className="flex flex-col gap-7 mt-10">
           <div className='flex flex-col gap-6'>
             <div className="flex gap-4">
-              {['presencial', 'remote', 'onSite'].map(type => (
+              {atentionTypes.map(type => (
                 <button
-                  key={type}
-                  className={`border rounded-full px-4 py-2 text-md transition cursor-pointer ${selectedAttentionType === type
+                  key={type.value}
+                  className={`border rounded-full px-4 py-2 text-md transition cursor-pointer ${selectedAttentionType === type.value
                     ? 'bg-[var(--color-foreground)] text-[var(--color-background)]'
                     : 'bg-[var(--color-background)] text-[var(--color-foreground)]'}`}
-                  onClick={() => setSelectedAttentionType(type as 'presencial' | 'remote' | 'onSite')}
+                  onClick={() => setSelectedAttentionType(type.value)}
                 >
-                  {type === 'presencial' ? 'Presencial' : type === 'remote' ? 'Remota' : 'A domicilio'}
+                  {type.label}
                 </button>
               ))}
             </div>
@@ -69,17 +70,9 @@ export default function Home() {
           <div className="flex gap-5">
             <Select
               label="Profesional"
-              value={selectedInsurance}
-              onChange={setSelectedInsurance}
-              options={[
-                { label: 'Médico', value: 'doctor' },
-                { label: 'Dentista', value: 'dentist' },
-                { label: 'Psicólogo', value: 'psychologist' },
-                { label: 'Abogado', value: 'lawyer' },
-                { label: 'Arquitecto', value: 'architect' },
-                { label: 'Ingeniero', value: 'engineer' },
-                { label: 'Contador', value: 'accountant' },
-              ]}
+              value={selectedService}
+              onChange={setSelectedService}
+              options={services}
               filterable={true}
             />
 
@@ -95,7 +88,17 @@ export default function Home() {
               className='hidden md:flex'
             />
 
-            <Link href="/search">
+            <Link
+              href={{
+                pathname: "/search",
+                query: {
+                  service: selectedService,
+                  region: selectedRegion,
+                  commune: selectedCommune,
+                  attentionType: selectedAttentionType,
+                },
+              }}
+            >
               <button className="rounded-full cursor-pointer transition-colors flex items-center justify-center bg-foreground text-background gap-2 font-medium text-base sm:text-base px-4 sm:px-7 h-full">
                 <p>Buscar</p>
               </button>
@@ -139,7 +142,7 @@ export default function Home() {
       <div className="flex my-10 text-center justify-center">
         <div className="md:ml-20 ml-2 flex flex-col justify-center sm:pr-10 pr-2 items-center">
           <h1 className="md:text-4xl text-3xl font-bold mb-6">¿Eres profesional? Comienza a ofrecer tus servicios</h1>
-          <p className="text-lg mb-8">Con nuestro servicio de atención virtual, 
+          <p className="text-lg mb-8">Con nuestro servicio de atención virtual,
             puedes ofrecer tus servicios de manera remota y conectarte con pacientes de todo el mundo.</p>
           <button className="bg-[var(--color-foreground)] text-[var(--color-background)] px-6 py-3 rounded-full w-fit cursor-pointer">
             <p>Ofrecer servicios</p>
@@ -214,7 +217,7 @@ function DoubleSelect({
         <div
           id={regionId}
           className={
-            `peer border border-[var(--color-foreground)] border-r-0 rounded-l-full px-4 py-4 w-full cursor-pointer focus:outline-none bg-[var(--color-background)] ` +
+            `peer whitespace-nowrap overflow-ellipsis overflow-hidden border border-[var(--color-foreground)] border-r-0 rounded-l-full px-4 py-4 w-full cursor-pointer focus:outline-none bg-[var(--color-background)] ` +
             `${valueRegion ? 'text-[var(--color-foreground)]' : 'text-transparent'}`
           }
           onClick={() => setOpenMenu(openMenu === 'region' ? null : 'region')}
@@ -260,7 +263,7 @@ function DoubleSelect({
         <div
           id={comunaId}
           className={
-            `peer border border-[var(--color-foreground)]  rounded-r-full px-4 py-4 w-full cursor-pointer focus:outline-none ` +
+            `peer whitespace-nowrap overflow-ellipsis overflow-hidden border border-[var(--color-foreground)]  rounded-r-full px-4 py-4 w-full cursor-pointer focus:outline-none ` +
             `${comunaDisabled ? 'bg-[var(--color-foreground)]/20 cursor-not-allowed pointer-events-none' : 'bg-[var(--color-background)]'} ` +
             `${valueCommune ? 'text-[var(--color-foreground)]' : 'text-transparent'}`
           }

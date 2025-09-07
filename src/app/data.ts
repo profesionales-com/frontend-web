@@ -90,4 +90,58 @@ export const topics: TopicsInterface[] = [
   },
 ];
 
+export const atentionTypes = [
+  { label: 'Presencial', value: 'presencial' },
+  { label: 'Online', value: 'remote' },
+  { label: 'A domicilio', value: 'onSite' },
+];
+
+export const services = [
+  {
+    label: 'Abogado',
+    value: 'lawyer',
+    category: 'legal'
+  },
+  {
+    label: 'Contador',
+    value: 'accountant',
+    category: 'legal'
+  },
+  {
+    label: 'Terapeuta',
+    value: 'therapist',
+    category: 'health'
+  },
+  {
+    label: 'Médico general',
+    value: 'doctor',
+    category: 'health'
+  },
+  {
+    label: 'Dentista',
+    value: 'dentist',
+    category: 'health'
+  },
+  {
+    label: 'Psicólogo',
+    value: 'psychologist',
+    category: 'health'
+  },
+  {
+    label: 'Arquitecto',
+    value: 'architect',
+    category: 'construction'
+  },
+  {
+    label: 'Ingeniero civil',
+    value: 'civil_engineer',
+    category: 'construction'
+  },
+  {
+    label: 'Constructor',
+    value: 'builder',
+    category: 'construction'
+  },
+]
+
 

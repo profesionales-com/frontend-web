@@ -56,7 +56,7 @@ export default function Select({
     <div className={`relative w-64 ${className}`} ref={ref}>
       <div
         id={inputId}
-        className={`peer border rounded-full px-4 py-4 w-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-[var(--color-foreground)] bg-[var(--color-background)] border-[var(--color-foreground)]
+        className={`peer whitespace-nowrap overflow-ellipsis overflow-hidden border rounded-full px-4 py-4 w-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-[var(--color-foreground)] bg-[var(--color-background)] border-[var(--color-foreground)]
         ${selectedOption ? 'text-[var(--color-foreground)]' : 'text-transparent'}
             `}
         onClick={() => setOpen((prev) => !prev)}
