@@ -1,6 +1,9 @@
 // app/search/page.tsx
 import React from "react";
 import SearchClient from "../components/SearchClient";
+type MyPageProps = {
+    searchParams: Record<string, string | string[] | undefined>
+};
 
 type SearchParams = {
     service?: string;
@@ -15,25 +18,24 @@ type Availability = {
 };
 
 export type Location = {
-  lat: number;
-  lng: number;
+    lat: number;
+    lng: number;
 };
 
 export type Provider = {
-  id: string;
-  name: string;
-  profession: string;
-  rating: number;
-  opinions: number;
-  address?: string;
-  online?: boolean;
-  priceFrom?: number;
-  availabilities?: Availability[];
-  location?: Location; // <-- lat/lng opcional
+    id: string;
+    name: string;
+    profession: string;
+    rating: number;
+    opinions: number;
+    address?: string;
+    online?: boolean;
+    priceFrom?: number;
+    availabilities?: Availability[];
+    location?: Location;
 };
 
 async function fetchProviders(_params: SearchParams): Promise<Provider[]> {
-    // mock — reemplaza por fetch a tu API
     return [
         {
             id: "1",
@@ -91,27 +93,22 @@ async function fetchProviders(_params: SearchParams): Promise<Provider[]> {
     ];
 }
 
-export default async function SearchPage({
-  searchParams,
-}: {
-  searchParams?: { [key: string]: string | string[] | undefined };
-}) {
-  const initialResults = await fetchProviders({
-    service: searchParams?.service as string | undefined,
-    region: searchParams?.region as string | undefined,
-    commune: searchParams?.commune as string | undefined,
-    attentionType: searchParams?.attentionType as string | undefined,
-  });
+export default async function SearchPage({ searchParams }: MyPageProps) {
+    const initialResults = await fetchProviders({
+        service: searchParams?.service as string | undefined,
+        region: searchParams?.region as string | undefined,
+        commune: searchParams?.commune as string | undefined,
+        attentionType: searchParams?.attentionType as string | undefined,
+    });
 
-  return (
-    <div className="min-h-screen">
-      <div className="container mx-auto px-4 py-6">
-        <SearchClient
-          initialSearchParams={searchParams}
-          initialResults={initialResults}
-        />
-      </div>
-    </div>
-  );
+    return (
+        <div className="min-h-screen">
+            <div className="container mx-auto px-4 py-6">
+                <SearchClient
+                    initialSearchParams={searchParams}
+                    initialResults={initialResults}
+                />
+            </div>
+        </div>
+    );
 }
-
