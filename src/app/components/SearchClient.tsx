@@ -10,7 +10,7 @@ import type { Provider } from "@/app/search/page";
 type SearchParamsPartial = Partial<Record<"service" | "region" | "commune" | "attention", string>>;
 
 interface Props {
-    initialSearchParams?: Record<string, string | undefined>;
+    initialSearchParams?: { [key: string]: string | string[] | undefined };
     initialResults: Provider[];
 }
 
@@ -18,10 +18,22 @@ export default function SearchClient({ initialSearchParams = {}, initialResults 
     const searchParams = useSearchParams();
     const router = useRouter();
 
-    const [service, setService] = useState<string>(() => searchParams.get("service") ?? initialSearchParams.service ?? "");
-    const [region, setRegion] = useState<string>(() => searchParams.get("region") ?? initialSearchParams.region ?? "");
-    const [commune, setCommune] = useState<string>(() => searchParams.get("commune") ?? initialSearchParams.commune ?? "");
-    const [attentionType, setAttentionType] = useState<string>(() => searchParams.get("attentionType") ?? initialSearchParams.attentionType ?? "");
+    const [service, setService] = useState<string>(() => {
+        const param = searchParams.get("service") ?? initialSearchParams.service ?? "";
+        return Array.isArray(param) ? param[0] ?? "" : param ?? "";
+    });
+    const [region, setRegion] = useState<string>(() => {
+        const param = searchParams.get("region") ?? initialSearchParams.region ?? "";
+        return Array.isArray(param) ? param[0] ?? "" : param ?? "";
+    });
+    const [commune, setCommune] = useState<string>(() => {
+        const param = searchParams.get("commune") ?? initialSearchParams.commune ?? "";
+        return Array.isArray(param) ? param[0] ?? "" : param ?? "";
+    });
+    const [attentionType, setAttentionType] = useState<string>(() => {
+        const param = searchParams.get("attentionType") ?? initialSearchParams.attentionType ?? "";
+        return Array.isArray(param) ? param[0] ?? "" : param ?? "";
+    });
 
     const [results, setResults] = useState<Provider[]>(initialResults);
     const [loading, setLoading] = useState<boolean>(false);
