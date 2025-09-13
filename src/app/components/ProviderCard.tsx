@@ -6,7 +6,7 @@ import type { Provider } from "@/app/search/page";
 
 export default function ProviderCard({ provider }: { provider: Provider }) {
     return (
-        <div className=" rounded-4xl shadow-lg p-4 flex gap-4 items-start">
+        <div className=" rounded-4xl shadow-md p-4 flex gap-4 items-start">
             <div className="w-20 h-20 rounded-full bg-[var(--color-foreground)] flex-shrink-0 overflow-hidden">
                 <Image width={80} height={80} src={`/api/avatar/${provider.id}`} alt={'🧑🏻‍💼'} className="w-full h-full object-cover text-center items-center grid text-4xl" />
             </div>

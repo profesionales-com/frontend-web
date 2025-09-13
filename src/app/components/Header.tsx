@@ -93,7 +93,7 @@ export default function Header() {
                         <Link href="/account">Cuenta</Link>
                     </li> */}
                     <li className='flex items-center'>
-                        <Link href="">
+                        <Link href="/professional-signup">
                             <button className="rounded-full cursor-pointer transition-colors flex items-center justify-center bg-foreground text-background gap-2 font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5">
                                 <p>Soy profesional</p>
                             </button>
